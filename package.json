@@ -1,0 +1,20 @@
+{
+  "name": "sandbox-cypress",
+  "version": "1.0.0",
+  "description": "A sandbox project for https://github.com/cypress-io/cypress.",
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tanakaworld/sandbox-cypress.git"
+  },
+  "author": "tanakaworld",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tanakaworld/sandbox-cypress/issues"
+  },
+  "devDependencies": {
+    "cypress": "4.12.1"
+  }
+}
