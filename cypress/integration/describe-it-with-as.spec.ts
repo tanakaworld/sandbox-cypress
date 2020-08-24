@@ -36,4 +36,11 @@ describe("describe-it-with-as", () => {
       });
     });
   });
+
+  it("top level it1", function () {
+    console.log("top level it1", this.response);
+    cy.visit("https://example.cypress.io/").then(function () {
+      console.log("top level it1 after visit", this.response);
+    });
+  });
 });
