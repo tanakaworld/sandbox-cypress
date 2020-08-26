@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("saveJSONAs", (key: string, json: JSON) => {
+  cy.window().then((win) => {
+    win.sessionStorage.setItem(key, JSON.stringify(json));
+  });
+});
+
+Cypress.Commands.add("getJSON", (key: string) => {
+  cy.window().then((win) => {
+    return JSON.parse(win.sessionStorage.getItem(key) as string);
+  });
+});
