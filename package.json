@@ -4,6 +4,7 @@
   "description": "A sandbox project for https://github.com/cypress-io/cypress.",
   "scripts": {
     "cypress:open": "cypress open",
+    "cypress:ci": "cypress run",
     "lint": "eslint --ext .js,.ts .",
     "lint:fix": "npm run lint -- --fix"
   },

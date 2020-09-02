@@ -1,0 +1,54 @@
+version: 2.1
+
+references:
+  workspace_root: &workspace_root ~/sandbox-cypress
+  defaults: &defaults
+    working_directory: *workspace_root
+  npm_cache_key: &npm_cache_key npm-cache-<< parameters.suffix >>-{{ arch }}-{{ .Branch }}-{{ checksum "package-lock.json" }}
+
+executors:
+  cypress:
+    <<: *defaults
+    docker:
+      - image: cypress/base:12.18.2
+
+commands:
+  save_npm_cache:
+    parameters:
+      suffix:
+        type: string
+        default: test
+    steps:
+      - save_cache:
+          key: *npm_cache_key
+          paths:
+            - ~/.npm
+  restore_npm_cache:
+    parameters:
+      suffix:
+        type: string
+        default: test
+    steps:
+      - restore_cache:
+          key: *npm_cache_key
+
+jobs:
+  cypress:
+    executor: cypress
+    steps:
+      - checkout
+      - restore_npm_cache
+      - run: npm ci
+      - save_npm_cache
+      - run:
+          name: cypress
+          command: npm run cypress:ci
+      - store_artifacts:
+          path: cypress/screenshots
+      - store_artifacts:
+          path: cypress/videos
+
+workflows:
+  test:
+    jobs:
+      - cypress
