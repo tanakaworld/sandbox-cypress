@@ -5,6 +5,7 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
+    "mock-server": "node ./mock-server/index.js",
     "lint": "eslint --ext .js,.ts .",
     "lint:fix": "npm run lint -- --fix"
   },
